@@ -1,0 +1,7 @@
+.leaflet-container {
+  height: 100svh;
+}
+.leaflet-container.format-size {
+  height: 500px;
+  width: 500px;
+}
