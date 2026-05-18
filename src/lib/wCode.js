@@ -1,6 +1,9 @@
 export function wCode(code) {
-  console.log(code);
+  // console.log(code);
   if (code === 0 || code === 1) {
+    if (new Date().getHours() > 19) {
+      return "night.gif";
+    }
     return "sunny.gif";
   }
   if (code === 2 || code === 3) {

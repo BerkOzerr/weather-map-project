@@ -47,6 +47,26 @@
   font-size: var(--text-6xl);
 }
 
+.mylocation-container {
+  display: flex;
+  position: absolute;
+  z-index: 9999;
+  top: 15%;
+  left: -1000px;
+  transition: all 0.6s ease-in-out;
+}
+.mylocation-container.active {
+  left: 65%;
+}
+.container-images {
+  display: flex;
+  flex-direction: column;
+}
+.container-images.active {
+  background-image: var(--url-bg-images);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 @media (max-width: 950px) {
   .navbar-linker {
     width: 250px;

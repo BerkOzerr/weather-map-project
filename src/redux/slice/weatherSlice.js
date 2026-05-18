@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { client } from "../../lib/axios";
 
 export const getWeather = createAsyncThunk("getWeather", async (weather) => {
@@ -38,7 +38,7 @@ const weatherSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getWeather.pending, (state, action) => {
+      .addCase(getWeather.pending, (state) => {
         state.status = "loading";
       })
       .addCase(getWeather.fulfilled, (state, action) => {

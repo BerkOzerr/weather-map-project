@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 
 const LocationMarker = () => {
   const dispatch = useDispatch();
-
   const map = useMapEvents({
     click() {
       map.locate();

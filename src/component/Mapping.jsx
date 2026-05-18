@@ -6,7 +6,6 @@ import {
   useMapEvent,
   useMapEvents,
 } from "react-leaflet";
-import MyComponent from "./CenterMapComponent";
 import "leaflet/dist/leaflet.css";
 import { useSelector } from "react-redux";
 
@@ -55,17 +54,16 @@ const Mapping = ({ small }) => {
             : "p-3 rounded-[50%] absolute top-15 right-15 z-9998 bg-black/60 cursor-pointer hover:stroke-amber-400 dark:hover:stroke-indigo-400"
         }
       />
-      {myLocation ? (
-        <>
-          <div className="absolute top-[35%] right-[35%]  w-fit flex z-9999">
-            <span className="text-red-400 animate-bounce text-2xl font-bold">
-              Click map and wait 5 seconds.
-            </span>
-          </div>
-        </>
-      ) : (
-        <></>
-      )}
+
+      <div
+        className={
+          myLocation ? "mylocation-container active " : "mylocation-container "
+        }
+      >
+        <span className="text-red-400  text-2xl font-bold">
+          Click map and wait 5 seconds.
+        </span>
+      </div>
     </div>
   );
 };
