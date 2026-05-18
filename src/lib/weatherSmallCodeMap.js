@@ -25,7 +25,7 @@ import wind from "../assets/128/wind.png";
 const now = new Date().getHours();
 // console.log(now);
 
-export const weatherCodeMap = {
+export const weatherSmallCodeMap = {
   0: now >= 19 ? night_half_moon_clear : day_clear,
   1: now >= 19 ? night_half_moon_partial_cloud : day_partial_cloud,
   2: cloudy,

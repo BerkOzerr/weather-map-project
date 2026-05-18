@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useMap } from "react-leaflet";
 import { useSelector } from "react-redux";
 
-const MyComponent = () => {
+const CenterMapComponent = () => {
   const { city } = useSelector((state) => state.map);
   const mapCenter = useMap();
   useEffect(() => {
@@ -14,4 +14,4 @@ const MyComponent = () => {
   return null;
 };
 
-export default MyComponent;
+export default CenterMapComponent;

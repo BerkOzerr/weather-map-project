@@ -13,6 +13,24 @@ export const getCityData = createAsyncThunk("getCityData", async (cityName) => {
     return error;
   }
 });
+//
+
+export const reverseGeoCode = createAsyncThunk(
+  "reverseGeoCode",
+  async (cityGeoCode) => {
+    const { lng, lat } = cityGeoCode;
+    console.log(lat, lng);
+    try {
+      const response = await client.get(
+        `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=18&addressdetails=1&layer=address`,
+      );
+      return response;
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  },
+);
 
 const mapSlice = createSlice({
   name: "map",
@@ -34,7 +52,7 @@ const mapSlice = createSlice({
   },
   reducers: {
     updatePosition: (state, action) => {
-      //console.log(action.payload);
+      console.log(action.payload);
       state.position = action.payload;
     },
   },
@@ -59,6 +77,31 @@ const mapSlice = createSlice({
         window.location.reload();
       })
       .addCase(getCityData.rejected, (state, action) => {
+        state.status = "error";
+        state.error = action?.payload?.error?.message;
+      });
+    builder
+      .addCase(reverseGeoCode.pending, (state, action) => {
+        state.status = "loading";
+      })
+      .addCase(reverseGeoCode.fulfilled, (state, action) => {
+        console.log(action);
+        state.city =
+          action?.payload?.data?.address.province +
+          "/" +
+          action?.payload?.data?.address.town;
+        state.cityDescription = action?.payload?.data?.display_name;
+        state.position = {
+          lat: action?.payload?.data?.lat,
+          lon: action?.payload?.data?.lon,
+        };
+        localStorage.setItem("position", JSON.stringify(state.position));
+        localStorage.setItem("cityDescription", state.cityDescription);
+        localStorage.setItem("city", state.city);
+        state.status = "ok";
+        window.location.reload();
+      })
+      .addCase(reverseGeoCode.rejected, (state, action) => {
         state.status = "error";
         state.error = action?.payload?.error?.message;
       });

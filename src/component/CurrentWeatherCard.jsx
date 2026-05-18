@@ -30,12 +30,12 @@ const CurrentWeatherCard = ({ weather }) => {
   const date = formatTime(time.substring(0, 10));
 
   return (
-    <div className="flex flex-col items-center justify-center gap-4 w-120  ">
+    <div className="flex flex-col items-center justify-center gap-8 w-120 text-white   bg-black/10 dark:bg-white/10 p-12 my-10 rounded-3xl ">
       <Link
         to={"/map"}
-        className="hover:text-amber-400 dark:hover:text-indigo-600"
+        className="hover:text-amber-400 dark:hover:text-indigo-600 "
       >
-        <h1 className="text-7xl font-bold mt-10 italic pointer-events-none">
+        <h1 className="text-5xl font-bold mt-10 italic  pointer-events-none">
           {city}
         </h1>
       </Link>
@@ -43,14 +43,14 @@ const CurrentWeatherCard = ({ weather }) => {
         <h1>{date}</h1>
       </div>
       <WeatherImg code={weather[0]?.current.weather_code} />
-      <div className="flex items-center  justify-center gap-4 animate-pulse delay-300">
+      <div className="flex items-center  justify-center gap-2 animate-pulse delay-300">
         <span className="text-5xl tracking-wider  font-bold text-amber-400 dark:text-indigo-400  ">
           {temp}
         </span>
         <span className="text-4xl ">{temp_unit}</span>
       </div>
       <div className="flex items-center justify-between w-full">
-        <div className="flex items-center  justify-center gap-4">
+        <div className="flex items-center  justify-center gap-2">
           <img
             className="w-8 h-8 opacity-100 hover:opacity-70 transition-all duration-150 delay-100 hover:animate-pulse "
             src={humidity_icon}
@@ -59,9 +59,9 @@ const CurrentWeatherCard = ({ weather }) => {
           <span className="text-3xl font-bold">{humidity}</span>
           <span className="text-2xl">{humidity_unit}</span>
         </div>
-        <div className="flex items-center  justify-center gap-4">
+        <div className="flex items-center  justify-center gap-2">
           <img
-            className="opacity-100 hover:opacity-70 transition-all duration-150 delay-100  hover:animate-pulse w-8 h-8"
+            className="opacity-100  hover:opacity-70 transition-all duration-150 delay-100  hover:animate-pulse w-8 h-8"
             src={wind_icon}
             alt=""
           />

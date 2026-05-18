@@ -7,6 +7,7 @@ const CurrentWeather = () => {
   const { currentWeather, hourlyWeather, currentWeatherList } = useSelector(
     (state) => state.weather,
   );
+
   const { position } = useSelector((state) => state.map);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -30,7 +31,7 @@ const CurrentWeather = () => {
     }
   }, [currentWeather, dispatch, hourlyWeather]);
   return (
-    <div className="flex items-center justify-center w-full">
+    <div className={`flex items-center justify-center w-full `}>
       {currentWeatherList.length > 0 ? (
         <CurrentWeatherCard weather={currentWeatherList} />
       ) : (

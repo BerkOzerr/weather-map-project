@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { upWeather } from "../redux/slice/weatherSlice";
 import HourlyWeatherCard from "./HourlyWeatherCard";
+import HourlyWeatherList from "./HourlyWeatherList";
 
 const HourlyWeather = () => {
   const { position } = useSelector((state) => state.map);
@@ -16,10 +17,11 @@ const HourlyWeather = () => {
       }),
     );
   }, [position, dispatch]);
+  // console.log(hourlyWeatherList[0]);
   return (
-    <div className="flex items-center justify-center w-full">
+    <div className="hourly-container flex overflow-x-auto  flex-col items-center justify-start gap-2   px-8 relative flex-wrap h-42 w-full">
       {hourlyWeatherList.length > 0 ? (
-        <HourlyWeatherCard weather={hourlyWeatherList} />
+        <HourlyWeatherList weather={hourlyWeatherList[0]} />
       ) : (
         <></>
       )}
