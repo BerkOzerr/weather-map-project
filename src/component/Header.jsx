@@ -1,13 +1,17 @@
 import { Menu, Moon, Sun } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { updateThema } from "../redux/slice/themaSlice";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { getCityData } from "../redux/slice/mapSlice";
 
 const Header = () => {
   const { thema } = useSelector((state) => state.thema);
   const dispatch = useDispatch();
+  const location = useLocation();
+
+  // React to the path name
+  // console.log(location.pathname);
 
   const [cityUp, setCityUp] = useState("");
   const [showNavbar, setShowNavbar] = useState(false);
@@ -28,13 +32,13 @@ const Header = () => {
   };
   // console.log(thema);
   return (
-    <div
-      className={`flex w-full  items-center  h-36  flex-wrap  truncate  lg:justify-between  max-md:justify-evenly max-sm:justify-between px-8  bg-black/80  text-white `}
+    <nav
+      className={`flex w-full  items-center  h-36  flex-wrap  truncate justify-between px-8  bg-black/80  text-white `}
     >
       <div className="flex items-center justify-center p-4  dark:hover:text-indigo-400 hover:text-amber-400 rounded-xl hover:shadow-md hover:shadow-amber-400 dark:hover:shadow-indigo-400">
-        <Link to={"/"}>
+        <NavLink to={"/"}>
           <h1 className="header-title ">Weather App</h1>
-        </Link>
+        </NavLink>
       </div>
       <div className="flex items-center justify-center gap-4 font-bold  text-2xl">
         <div className="flex items-center  justify-center ">
@@ -66,7 +70,7 @@ const Header = () => {
             />
           </div>
           <div
-            className={showNavbar ? "navbar-linker active" : "navbar-linker"}
+            className={showNavbar ? "navbar-linker actives" : "navbar-linker"}
           >
             <div className="flex rounded-4xl flex-col items-center justify-center input-container-city ">
               <input
@@ -74,30 +78,48 @@ const Header = () => {
                 onKeyDown={(e) => handleKeydown(e)}
                 placeholder="Search City Name"
                 type="text"
-                className="city-search-input placeholder:text-white/60 text-white  text-center     outline-none shadow-md shadow-amber-400 dark:shadow-indigo-400 rounded-xl"
+                className="city-search-input placeholder:text-white/60 text-white  text-center     outline-none shadow-xs shadow-amber-400 dark:shadow-indigo-400 rounded-xl"
               />
             </div>
             <div className="linker-item">
-              <div className="hover:shadow-md  hover:shadow-amber-400 dark:hover:shadow-indigo-400 p-2 rounded-xl">
-                <Link to={"/"}>
+              <div
+                className={
+                  location.pathname === "/"
+                    ? "dark:bg-indigo-400 bg-amber-400  hover:shadow-md  hover:shadow-amber-400 dark:hover:shadow-indigo-400 p-2  rounded-xl"
+                    : " hover:shadow-md  hover:shadow-amber-400 dark:hover:shadow-indigo-400 py-2  rounded-xl"
+                }
+              >
+                <NavLink to={"/"}>
                   <h1>Home</h1>
-                </Link>
+                </NavLink>
               </div>
-              <div className="hover:shadow-md hover:shadow-amber-400 dark:hover:shadow-indigo-400 p-2 rounded-xl">
-                <Link to={"/map"}>
+              <div
+                className={
+                  location.pathname === "/map"
+                    ? " dark:bg-indigo-400 bg-amber-400 hover:shadow-md  hover:shadow-amber-400 dark:hover:shadow-indigo-400 p-2 rounded-xl"
+                    : " hover:shadow-md  hover:shadow-amber-400 dark:hover:shadow-indigo-400 p-2   rounded-xl"
+                }
+              >
+                <NavLink to={"/map"}>
                   <h1>Map</h1>
-                </Link>
+                </NavLink>
               </div>
-              <div className="hover:shadow-md  hover:shadow-amber-400 dark:hover:shadow-indigo-400 p-2 rounded-xl">
-                <Link to={"/weather"}>
+              <div
+                className={
+                  location.pathname === "/weather"
+                    ? " dark:bg-indigo-400 bg-amber-400 hover:shadow-md  hover:shadow-amber-400 dark:hover:shadow-indigo-400 p-2  rounded-xl"
+                    : " hover:shadow-md  hover:shadow-amber-400 dark:hover:shadow-indigo-400 p-2  rounded-xl"
+                }
+              >
+                <NavLink to={"/weather"}>
                   <h1>Weather</h1>
-                </Link>
+                </NavLink>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </nav>
   );
 };
 

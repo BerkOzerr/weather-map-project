@@ -28,7 +28,7 @@ const WeatherList = () => {
     <div
       className={
         bgImage.length >= 3
-          ? `container-images active`
+          ? `container-images actives`
           : "container-images dark:bg-black/80 h-screen "
       }
     >

@@ -30,29 +30,67 @@ const CurrentWeatherCard = ({ weather }) => {
   const date = formatTime(time.substring(0, 10));
 
   return (
-    <div className="flex flex-col items-center justify-center gap-8 w-120 text-white   bg-black/10 dark:bg-white/10 p-12 my-10 rounded-3xl ">
+    <div className="flex flex-col items-center justify-center gap-8 w-120 dark:text-black  text-white bg-black/60   dark:bg-white/30 p-12 my-10 rounded-3xl ">
       <Link
         to={"/map"}
         className="hover:text-amber-400 dark:hover:text-indigo-600  "
       >
         <div className="my-5  flex flex-wrap gap-2 items-center justify-center ">
-          <h1 className="text-5xl font-bold   italic  pointer-events-none">
-            {city?.city}
-          </h1>
-          <h1 className="text-5xl font-bold   italic  pointer-events-none">
-            {city?.province}
-          </h1>
-          <div className="flex flex-wrap items-center justify-center text-white/60 gap-4">
-            <h1 className="text-2xl font-semibold   italic  pointer-events-none">
-              {city?.town}
-            </h1>
-            <h1 className="text-2xl font-semibold   italic  pointer-events-none">
-              {city?.suburb}
-            </h1>
-            <h1 className="text-2xl font-semibold   italic  pointer-events-none">
-              {city?.village}
-            </h1>
-          </div>
+          {city?.city?.length >= 2 ? (
+            <>
+              <h1 className="text-5xl font-bold   italic  pointer-events-none">
+                {city?.city}
+              </h1>
+            </>
+          ) : (
+            <></>
+          )}
+          {city?.province?.length >= 2 ? (
+            <>
+              <h1 className="text-5xl font-bold   italic  pointer-events-none">
+                {city?.province}
+              </h1>
+            </>
+          ) : (
+            <></>
+          )}
+          {city?.town?.length >= 2 ||
+          city?.suburb?.length >= 2 ||
+          city?.village?.length >= 3 ? (
+            <>
+              <div className="flex flex-wrap items-center justify-center text-white/60 dark:text-black/70  gap-4">
+                {city?.town?.length >= 2 ? (
+                  <>
+                    <h1 className="text-2xl font-semibold   italic  pointer-events-none">
+                      {city?.town}
+                    </h1>
+                  </>
+                ) : (
+                  <></>
+                )}
+                {city?.suburb?.length >= 2 ? (
+                  <>
+                    <h1 className="text-2xl font-semibold   italic  pointer-events-none">
+                      {city?.suburb}
+                    </h1>
+                  </>
+                ) : (
+                  <></>
+                )}
+                {city?.village?.length >= 2 ? (
+                  <>
+                    <h1 className="text-2xl font-semibold   italic  pointer-events-none">
+                      {city?.village}
+                    </h1>
+                  </>
+                ) : (
+                  <></>
+                )}
+              </div>
+            </>
+          ) : (
+            <></>
+          )}
         </div>
       </Link>
       <div className=" flex items-center justify-center text-3xl font-extralight italic gap-3 pointer-events-none">
@@ -63,7 +101,9 @@ const CurrentWeatherCard = ({ weather }) => {
         <span className="text-5xl tracking-wider  font-bold text-amber-400 dark:text-indigo-400  ">
           {temp}
         </span>
-        <span className="text-4xl  text-white/60">{temp_unit}</span>
+        <span className="text-4xl text-white/60 dark:text-black/70">
+          {temp_unit}
+        </span>
       </div>
       <div className="flex items-center justify-between w-full">
         <div className="flex items-center  justify-center gap-2">
@@ -73,7 +113,9 @@ const CurrentWeatherCard = ({ weather }) => {
             alt=""
           />
           <span className="text-3xl font-bold">{humidity}</span>
-          <span className="text-2xl text-white/60">{humidity_unit}</span>
+          <span className="text-2xl  text-white/60 dark:text-black/70">
+            {humidity_unit}
+          </span>
         </div>
         <div className="flex items-center  justify-center gap-2">
           <img
@@ -82,7 +124,9 @@ const CurrentWeatherCard = ({ weather }) => {
             alt=""
           />
           <span className="text-3xl font-bold">{wind}</span>
-          <span className="text-2xl text-white/60">{wind_unit}</span>
+          <span className="text-2xl text-white/60  dark:text-black/70">
+            {wind_unit}
+          </span>
         </div>
       </div>
     </div>

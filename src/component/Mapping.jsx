@@ -57,7 +57,7 @@ const Mapping = ({ small }) => {
 
       <div
         className={
-          myLocation ? "mylocation-container active " : "mylocation-container "
+          myLocation ? "mylocation-container actives " : "mylocation-container "
         }
       >
         <span className="text-red-400  text-2xl font-bold">

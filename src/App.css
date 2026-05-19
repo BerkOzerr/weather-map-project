@@ -55,14 +55,14 @@
   left: -1000px;
   transition: all 0.6s ease-in-out;
 }
-.mylocation-container.active {
+.mylocation-container.actives {
   left: 65%;
 }
 .container-images {
   display: flex;
   flex-direction: column;
 }
-.container-images.active {
+.container-images.actives {
   background-image: var(--url-bg-images);
   background-repeat: no-repeat;
   background-size: cover;
@@ -102,7 +102,7 @@
   .navbar-icon {
     display: block;
   }
-  .navbar-linker.active {
+  .navbar-linker.actives {
     top: 120px;
   }
 }

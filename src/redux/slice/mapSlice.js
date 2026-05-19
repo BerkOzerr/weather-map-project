@@ -19,7 +19,7 @@ export const reverseGeoCode = createAsyncThunk(
   "reverseGeoCode",
   async (cityGeoCode) => {
     const { lng, lat } = cityGeoCode;
-    console.log(lat, lng);
+    //console.log(lat, lng);
     try {
       const response = await client.get(
         `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=18&addressdetails=1&layer=address`,
@@ -56,7 +56,7 @@ const mapSlice = createSlice({
   },
   reducers: {
     updatePosition: (state, action) => {
-      console.log(action.payload);
+      // console.log(action.payload);
       state.position = action.payload;
     },
   },
@@ -67,7 +67,7 @@ const mapSlice = createSlice({
         localStorage.setItem("status", state.status);
       })
       .addCase(getCityData.fulfilled, (state, action) => {
-        console.log(action?.payload?.data?.results[0]);
+        //console.log(action?.payload?.data?.results[0]);
         state.city = { city: action?.payload?.data?.results[0]?.name };
         state.cityDescription = `${action?.payload?.data?.results[0]?.country} Şehir-${action?.payload?.data?.results[0]?.name} Nüfusu-${action?.payload?.data?.results[0]?.population}`;
         state.position = {
@@ -93,7 +93,7 @@ const mapSlice = createSlice({
         localStorage.setItem("status", state.status);
       })
       .addCase(reverseGeoCode.fulfilled, (state, action) => {
-        console.log(action);
+        //console.log(action);
         state.city = null;
         state.cityDescription = action?.payload?.data?.display_name;
         state.position = {
