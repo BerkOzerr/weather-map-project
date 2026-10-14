@@ -11,6 +11,7 @@ function App() {
   const { thema } = useSelector((state) => state.thema);
   const dispatch = useDispatch();
   useEffect(() => {
+    console.log(thema);
     if (thema) {
       dispatch(updateThema(thema));
       document.documentElement.classList.toggle("dark", thema === "dark");
